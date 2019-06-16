@@ -8,17 +8,11 @@ const passportConfig = require('./services/auth');
 const MongoStore = require('connect-mongo')(session);
 const schema = require('./schema/schema');
 
-// Create a new Express application
 const app = express();
-
-// Replace with your mongoLab URI
-const MONGO_URI = '';
+const MONGO_URI = process.env.MONGO_URI;
 
 // Mongoose's built in promise library is deprecated, replace it with ES2015 Promise
 mongoose.Promise = global.Promise;
-
-// Connect to the mongoDB instance and log a message
-// on success or failure
 mongoose.connect(MONGO_URI);
 mongoose.connection
     .once('open', () => console.log('Connected to MongoLab instance.'))
@@ -41,7 +35,7 @@ app.use(session({
 
 // Passport is wired into express as a middleware. When a request comes in,
 // Passport will examine the request's session (as set by the above config) and
-// assign the current user to the 'req.user' object.  See also servces/auth.js
+// assign the current user to the 'req.user' object. See also servces/auth.js
 app.use(passport.initialize());
 app.use(passport.session());
 
