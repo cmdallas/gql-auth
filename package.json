@@ -8,7 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js --ignore client"
+    "dev": "MONGO_URI='mongodb+srv://dbUser:<password>@cluster0-wyopu.mongodb.net/test?retryWrites=true&w=majority' nodemon index.js --ignore client"
   },
   "author": "",
   "license": "ISC",
