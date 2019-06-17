@@ -8,7 +8,6 @@ const passportConfig = require('./services/auth');
 const MongoStore = require('connect-mongo')(session);
 const schema = require('./schema/schema');
 
-console.log('env', process.env);
 const app = express();
 const MONGO_URI = process.env.MONGO_URI;
 
@@ -30,8 +29,7 @@ app.use(
     saveUninitialized: true,
     secret: 'aaabbbccc',
     store: new MongoStore({
-      url: MONGO_URI,
-      autoReconnect: true
+      mongooseConnection: mongoose.connection
     })
   })
 );
