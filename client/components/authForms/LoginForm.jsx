@@ -13,7 +13,7 @@ class LoginForm extends Component {
   }
   onSubmit({ email, password }) {
     this.props
-      .mutate({
+      .loginMutation({
         variables: { email, password },
         refetchQueries: [{ query: currentUser }]
       })
@@ -36,4 +36,4 @@ class LoginForm extends Component {
   }
 }
 
-export default graphql(login)(LoginForm);
+export default graphql(login, { name: 'loginMutation' })(LoginForm);

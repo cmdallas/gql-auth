@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import { Link } from 'react-router';
 
 import currentUser from '../queries/currentUser';
@@ -54,4 +54,7 @@ class Header extends Component {
   }
 }
 
-export default graphql(logout)(graphql(currentUser)(Header));
+export default compose(
+  graphql(logout),
+  graphql(currentUser)
+)(Header);
